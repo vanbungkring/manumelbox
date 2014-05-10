@@ -2,6 +2,7 @@ var path = require('path'),
   favicon = require('static-favicon'),
   logger = require('morgan'),
   db = require('../model'),
+  config = require('./config.js'),
   cookieParser = require('cookie-parser'),
   bodyParser = require('body-parser'),
   routes = require('../routes/index');
@@ -10,12 +11,14 @@ module.exports = function(app, express) {
   // view engine setup
   app.set('views', path.join(__dirname, '../views'));
   app.set('view engine', 'ejs');
+
   app.use(favicon());
   app.use(logger('dev'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded());
   app.use(cookieParser());
   app.use(express.static(path.join(__dirname, '../public')));
+
   app.enable('trust proxy')
   app.disable('x-powered-by')
 
